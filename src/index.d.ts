@@ -1,0 +1,1 @@
+declare module '@buonan/react-native-timetable'
