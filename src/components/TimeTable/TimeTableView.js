@@ -47,6 +47,7 @@ export default class TimeTableView extends Component {
       dateHeaderFormat,
       onEventPress,
       pivotTime,
+      customStyle,
     } = this.props;
     const events = assignColor(this.props.events);
     const { currentDate } = this.state;
@@ -67,7 +68,7 @@ export default class TimeTableView extends Component {
             <View style={styles.timeColumn}>
               {this.times.map(time => (
                 <View key={time} style={styles.timeLabel}>
-                  <Text style={styles.timeText}>{time === 12 ? 12 : time % 12}</Text>
+                  <Text style={[styles.timeText, { color: customStyle.labelColor }]}>{time === 12 ? 12 : time % 12}</Text>
                 </View>
               ))}
             </View>
@@ -83,6 +84,7 @@ export default class TimeTableView extends Component {
                 nDays={nDays}
                 onEventPress={onEventPress}
                 events={events}
+                customStyle={customStyle}
               />
             </View>
           </View>

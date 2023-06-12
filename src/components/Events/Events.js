@@ -127,6 +127,7 @@ class Events extends Component {
       nDays,
       selectedDate,
       times,
+      customStyle,
     } = this.props;
     const sortedEvents = this.sortEventsByDate(events);
     let totalEvents = this.catEventsByDays(nDays, sortedEvents, selectedDate);
@@ -135,7 +136,7 @@ class Events extends Component {
       <View style={styles.container}>
         {times.map(time => (
           <View key={time} style={styles.timeRow}>
-            <View style={styles.timeLabelLine} />
+            <View style={[styles.timeLabelLine, { color: customStyle.color }]} />
           </View>
         ))}
         <View style={styles.events}>
@@ -150,6 +151,7 @@ class Events extends Component {
                   event={item.data}
                   style={item.style}
                   onPress={this.onEventPress}
+                  customStyle={customStyle}
                 />
               ))}
             </View>

@@ -6,7 +6,7 @@ import {
 } from 'react-native';
 import styles from './Event.styles';
 
-const Event = ({ event, onPress, style }) => {
+const Event = ({ event, onPress, style, customStyle }) => {
   event.extra_descriptions = event.extra_descriptions || [];
   return (
     <TouchableOpacity
@@ -15,10 +15,10 @@ const Event = ({ event, onPress, style }) => {
         backgroundColor: event.color,
       }]}
     >
-      <Text style={styles.title}>{event.title}</Text>
-      <Text style={styles.location}>{event.location}</Text>
+      <Text style={[styles.title, { color: customStyle.color }]}>{event.title}</Text>
+      <Text style={[styles.location, { color: customStyle.color }]}>{event.location}</Text>
       {event.extra_descriptions.map((description, idx) => (
-        <Text key={idx} style={styles.description}>{description}</Text>
+        <Text key={idx} style={[styles.description, { color: customStyle.color }]}>{description}</Text>
       ))}
     </TouchableOpacity>
   );
