@@ -13,7 +13,7 @@ const { width: screenWidth } = Dimensions.get('window');
 
 const MINUTES_IN_HOUR = 60;
 const MINUTES_IN_DAY = MINUTES_IN_HOUR * 24;
-const CONTENT_HEIGHT = TIME_LABELS_COUNT;
+const CONTENT_HEIGHT = ROW_HEIGHT * TIME_LABELS_COUNT;
 const TIME_LABEL_WIDTH = HeaderStyle.title.width;
 const EVENTS_CONTAINER_WIDTH = screenWidth - TIME_LABEL_WIDTH;
 
@@ -67,7 +67,7 @@ class Events extends Component {
     const totalStartMinutes = (startHours * MINUTES_IN_HOUR) + startMinutes;
     const calcHeight = customStyle.rowHeight ? customStyle.rowHeight * TIME_LABELS_COUNT : CONTENT_HEIGHT;
     const topOffset = (totalStartMinutes * calcHeight) / MINUTES_IN_DAY;
-    const height = (moment(item.endTime).diff(item.startTime, 'minutes') * CONTENT_HEIGHT) / MINUTES_IN_DAY;
+    const height = (moment(item.endTime).diff(item.startTime, 'minutes') * calcHeight) / MINUTES_IN_DAY;
     const width = this.getEventItemWidth();
 
     return {
