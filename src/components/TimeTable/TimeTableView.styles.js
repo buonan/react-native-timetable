@@ -1,4 +1,5 @@
 import { Dimensions, StyleSheet } from 'react-native';
+import { ROW_HEIGHT } from '../Events/Events.styles';
 
 import HeaderStyle from '../Header/Header.styles';
 
