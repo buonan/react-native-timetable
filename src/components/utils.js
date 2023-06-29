@@ -34,7 +34,7 @@ const genDateBlock = (dayOW) => {
     '토': '06',
   };
 
-  return new Date(`2019-07-${dayOWMap[dayOW.toLowerCase()]}T00:00:00`);
+  return new Date(`2019-07-${dayOWMap[dayOW.toLowerCase()]}T07:00:00.000`);
 };
 
 const genTimeBlock = (dayOW, hours = 0, minutes = 0) => {
