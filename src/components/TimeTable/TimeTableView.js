@@ -10,6 +10,7 @@ import { setLocale, assignColor, genTimeBlock } from '../utils';
 import Events from '../Events/Events';
 import Header from '../Header/Header';
 import styles from './TimeTableView.styles';
+import { ROW_HEIGHT } from '../Events/Events.styles';
 
 export default class TimeTableView extends Component {
   constructor(props) {
@@ -67,7 +68,7 @@ export default class TimeTableView extends Component {
           <View style={styles.scrollViewContent}>
             <View style={styles.timeColumn}>
               {this.times.map(time => (
-                <View key={time} style={styles.timeLabel}>
+                <View key={time} style={[styles.timeLabel, { height: customStyle.rowHeight ?? ROW_HEIGHT }]}>
                   <Text style={[styles.timeText, { color: customStyle.labelColor }]}>{time === 12 ? 12 : time % 12}</Text>
                 </View>
               ))}

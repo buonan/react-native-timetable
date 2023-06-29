@@ -13,7 +13,7 @@ const { width: screenWidth } = Dimensions.get('window');
 
 const MINUTES_IN_HOUR = 60;
 const MINUTES_IN_DAY = MINUTES_IN_HOUR * 24;
-const CONTENT_HEIGHT = ROW_HEIGHT * TIME_LABELS_COUNT;
+const CONTENT_HEIGHT = TIME_LABELS_COUNT;
 const TIME_LABEL_WIDTH = HeaderStyle.title.width;
 const EVENTS_CONTAINER_WIDTH = screenWidth - TIME_LABEL_WIDTH;
 
@@ -56,7 +56,7 @@ class Events extends Component {
     return total;
   };
 
-  calcEventStyle = (item) => {
+  calcEventStyle = (item, customStyle) => {
     /**
      * TODO: gotta reduce topOffset value in order to pull events upper (it should be go together with left time label)
      * @type {number}
@@ -65,7 +65,7 @@ class Events extends Component {
     const startHours = moment(item.startTime).hours() - pivotTime;
     const startMinutes = moment(item.startTime).minutes();
     const totalStartMinutes = (startHours * MINUTES_IN_HOUR) + startMinutes;
-    const topOffset = (totalStartMinutes * CONTENT_HEIGHT) / MINUTES_IN_DAY;
+    const topOffset = (totalStartMinutes * (customStyle.rowHeight * TIME_LABELS_COUNT)) / MINUTES_IN_DAY;
     const height = (moment(item.endTime).diff(item.startTime, 'minutes') * CONTENT_HEIGHT) / MINUTES_IN_DAY;
     const width = this.getEventItemWidth();
 
@@ -77,13 +77,13 @@ class Events extends Component {
     };
   };
 
-  adjustEventStyle = (totalEvents) => {
+  adjustEventStyle = (totalEvents, customStyle) => {
     const itemWidth = this.getEventItemWidth();
     return totalEvents.map((events) => {
       // get position and width for each event
       return events.reduce((eventsAcc, event, i) => {
         let numberOfDuplicate = 1;
-        const style = this.calcEventStyle(event);
+        const style = this.calcEventStyle(event, customStyle);
         // check if previous events have the same position or not,
         // start from 0 to current index of event item
         for (let j = 0; j < i; j += 1) {
@@ -131,11 +131,11 @@ class Events extends Component {
     } = this.props;
     const sortedEvents = this.sortEventsByDate(events);
     let totalEvents = this.catEventsByDays(nDays, sortedEvents, selectedDate);
-    totalEvents = this.adjustEventStyle(totalEvents);
+    totalEvents = this.adjustEventStyle(totalEvents, customStyle);
     return (
       <View style={styles.container}>
         {times.map(time => (
-          <View key={time} style={styles.timeRow}>
+          <View key={time} style={[styles.timeRow, { height: customStyle.rowHeight ?? ROW_HEIGHT }]}>
             <View style={[styles.timeLabelLine, { color: customStyle.color }]} />
           </View>
         ))}
