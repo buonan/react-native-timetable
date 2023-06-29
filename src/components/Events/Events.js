@@ -65,7 +65,8 @@ class Events extends Component {
     const startHours = moment(item.startTime).hours() - pivotTime;
     const startMinutes = moment(item.startTime).minutes();
     const totalStartMinutes = (startHours * MINUTES_IN_HOUR) + startMinutes;
-    const topOffset = (totalStartMinutes * (customStyle?.rowHeight * TIME_LABELS_COUNT ?? CONTENT_HEIGHT)) / MINUTES_IN_DAY;
+    const calcHeight = customStyle.rowHeight ? customStyle.rowHeight * TIME_LABELS_COUNT : CONTENT_HEIGHT;
+    const topOffset = (totalStartMinutes * calcHeight) / MINUTES_IN_DAY;
     const height = (moment(item.endTime).diff(item.startTime, 'minutes') * CONTENT_HEIGHT) / MINUTES_IN_DAY;
     const width = this.getEventItemWidth();
 

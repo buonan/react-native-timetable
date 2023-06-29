@@ -11,6 +11,7 @@ const styles = StyleSheet.create({
   },
   timeRow: {
     flex: 0,
+    height: ROW_HEIGHT,
   },
   timeLabelLine: {
     height: 1,
