@@ -49,10 +49,12 @@ export default class TimeTableView extends Component {
       onEventPress,
       pivotTime,
       customStyle,
+      pivotEndTime
     } = this.props;
     const events = assignColor(this.props.events);
     const { currentDate } = this.state;
     // const dates = this.prepareDates(currentMoment, nDays);
+    this.times = this.genTimes(pivotTime, pivotEndTime);
     const date = moment(currentDate);
     return (
       <View style={styles.container}>
