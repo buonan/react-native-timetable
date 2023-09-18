@@ -66,7 +66,7 @@ export default class TimeTableView extends Component {
             nDays={nDays}
           />
         </View>
-        <ScrollView ref={this.props.scrollViewRef}>
+        <ScrollView onScroll={this.props.onScroll} ref={this.props.scrollViewRef}>
           <View style={styles.scrollViewContent}>
             <View style={styles.timeColumn}>
               {this.times.map(time => (
