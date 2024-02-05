@@ -144,7 +144,7 @@ class Events extends Component {
           {totalEvents.map((eventsInSection, sectionIndex) => (
             <View
               key={sectionIndex}
-              style={styles.event}
+              style={[styles.event, customStyle.event]}
             >
               {eventsInSection.map(item => (
                 <Event

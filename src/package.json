@@ -1,6 +1,6 @@
 {
   "name": "@buonan/react-native-timetable",
-  "version": "1.0.21",
+  "version": "1.0.23",
   "description": "fork of @gomjellie/react-native-timetable",
   "main": "index.js",
   "scripts": {
