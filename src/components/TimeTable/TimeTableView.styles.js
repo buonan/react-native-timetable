@@ -15,7 +15,6 @@ const styles = StyleSheet.create({
   header: {
     height: 21,
     justifyContent: 'center',
-    alignItems: 'center',
   },
   timeLabel: {
     flex: -1,
