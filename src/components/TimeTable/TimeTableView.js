@@ -58,7 +58,7 @@ export default class TimeTableView extends Component {
     const date = moment(currentDate);
     return (
       <View style={styles.container}>
-        <View style={[styles.header, { alignItems: !customStyle.alignItems }]}>
+        <View style={[styles.header, { alignItems: customStyle.alignItems }]}>
           <Header
             style={headerStyle}
             dateFormat={dateHeaderFormat}
